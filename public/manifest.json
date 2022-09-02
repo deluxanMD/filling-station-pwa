@@ -1,0 +1,13 @@
+{
+  "short_name": "Filling Station",
+  "name": "Filling Station PWA",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "type": "image/png",
+      "sizes": "1024x1024"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone"
+}
