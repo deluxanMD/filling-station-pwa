@@ -1,14 +1,9 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, memo, useEffect } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
   height: "100vw",
-};
-
-const center = {
-  lat: -3.745,
-  lng: -38.523,
 };
 
 const Maps = () => {
@@ -18,15 +13,36 @@ const Maps = () => {
   });
 
   const [map, setMap] = useState(null);
+  const [center, setCenter] = useState({});
 
-  const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-    setMap(map);
-  }, []);
+  const onLoad = useCallback(
+    function callback(map) {
+      const bounds = new window.google.maps.LatLngBounds(center);
+      map.fitBounds(bounds);
+      setMap(map);
+    },
+    [center]
+  );
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
+  }, []);
+
+  const getLatLon = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setCenter({
+          lat: +position.coords.latitude,
+          lng: +position.coords.longitude,
+        });
+      });
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  };
+
+  useEffect(() => {
+    getLatLon();
   }, []);
 
   return isLoaded ? (
@@ -45,4 +61,4 @@ const Maps = () => {
   );
 };
 
-export default Maps;
+export default memo(Maps);
