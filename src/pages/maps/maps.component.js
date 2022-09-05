@@ -3,7 +3,7 @@ import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
-  height: "100vw",
+  height: "100vh",
 };
 
 const Maps = () => {
@@ -32,8 +32,8 @@ const Maps = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         setCenter({
-          lat: +position.coords.latitude,
-          lng: +position.coords.longitude,
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
         });
       });
     } else {
@@ -49,7 +49,7 @@ const Maps = () => {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={14}
+      zoom={15}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
