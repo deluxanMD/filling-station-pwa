@@ -1,5 +1,7 @@
 import React, { useState, useCallback, memo, useEffect } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import TextInput from "../../components/text-input/text-input.component";
+import { Box } from "@mui/material";
 
 const containerStyle = {
   width: "100%",
@@ -14,6 +16,7 @@ const Maps = () => {
 
   const [map, setMap] = useState(null);
   const [center, setCenter] = useState({});
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   const onLoad = useCallback(
     function callback(map) {
@@ -41,6 +44,13 @@ const Maps = () => {
     }
   };
 
+  const handleChange = (e) => {
+    const {
+      target: { value },
+    } = e;
+    setSearchKeyword(value);
+  };
+
   useEffect(() => {
     getLatLon();
   }, []);
@@ -49,12 +59,18 @@ const Maps = () => {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={15}
+      zoom={16}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
       {/* Child components, such as markers, info windows, etc. */}
-      <></>
+      <Box sx={{ marginTop: 8, paddingLeft: 1, paddingRight: 1 }}>
+        <TextInput
+          label="search by fuel station name, id or location"
+          handleChange={handleChange}
+          value={searchKeyword}
+        />
+      </Box>
     </GoogleMap>
   ) : (
     <></>
