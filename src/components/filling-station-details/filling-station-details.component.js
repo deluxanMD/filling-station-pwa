@@ -6,6 +6,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import FuelAvailableChart from "../charts/fuel-available/fuel-available.component";
 import FuelQueue from "./fuel-queue/fuel-queue.component";
+import FueledVehicles from "./fueled-vehicles/fueled-vehicles.component";
 
 const FillingStationDetails = () => {
   const theme = useTheme();
@@ -18,13 +19,18 @@ const FillingStationDetails = () => {
         flexWrap: "wrap",
         "& > :not(style)": {
           m: 1,
-          width: isMobile ? "100%" : 400,
+          width: isMobile ? "100%" : 320,
         },
       }}
     >
       <Paper
         elevation={3}
-        style={{ zIndex: 9999, position: "relative", padding: 10 }}
+        style={{
+          zIndex: 9999,
+          position: "relative",
+          padding: 10,
+          overflow: "auto",
+        }}
       >
         <Typography style={{ marginBottom: 10 }}>
           Filling Station Name
@@ -39,6 +45,7 @@ const FillingStationDetails = () => {
           11550L <span>Remain</span>
         </Typography>
         <FuelQueue />
+        <FueledVehicles />
       </Paper>
     </Box>
   );
