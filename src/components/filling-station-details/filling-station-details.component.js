@@ -7,6 +7,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import FuelAvailableChart from "../charts/fuel-available/fuel-available.component";
 import FuelQueue from "./fuel-queue/fuel-queue.component";
 import FueledVehicles from "./fueled-vehicles/fueled-vehicles.component";
+import Ratings from "./ratings/ratings.component";
 
 const FillingStationDetails = () => {
   const theme = useTheme();
@@ -46,6 +47,7 @@ const FillingStationDetails = () => {
         </Typography>
         <FuelQueue />
         <FueledVehicles />
+        <Ratings />
       </Paper>
     </Box>
   );
