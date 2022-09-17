@@ -5,6 +5,7 @@ import FuelTypeSelect from "./fuel-type-select/fuel-type-select.component";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import FuelAvailableChart from "../charts/fuel-available/fuel-available.component";
+import FuelQueue from "./fuel-queue/fuel-queue.component";
 
 const FillingStationDetails = () => {
   const theme = useTheme();
@@ -37,6 +38,7 @@ const FillingStationDetails = () => {
         <Typography variant="h5">
           11550L <span>Remain</span>
         </Typography>
+        <FuelQueue />
       </Paper>
     </Box>
   );
