@@ -2,6 +2,9 @@ import React, { useState, useCallback, memo, useEffect } from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import TextInput from "../../components/text-input/text-input.component";
 import { Box } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import FuelTypeTabs from "../../components/fuel-type-tabs/fuel-type-tabs.component";
 
 const containerStyle = {
   width: "100%",
@@ -17,6 +20,9 @@ const Maps = () => {
   const [map, setMap] = useState(null);
   const [center, setCenter] = useState({});
   const [searchKeyword, setSearchKeyword] = useState("");
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const onLoad = useCallback(
     function callback(map) {
@@ -51,25 +57,39 @@ const Maps = () => {
     setSearchKeyword(value);
   };
 
+  const handleFuelSelection = (type) => {
+    console.log(`Selected fuel type is ${type}`);
+  };
+
   useEffect(() => {
     getLatLon();
-  }, []);
+  }, [map]);
 
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={16}
+      zoom={14}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
       {/* Child components, such as markers, info windows, etc. */}
-      <Box sx={{ marginTop: 8, paddingLeft: 1, paddingRight: 1 }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          marginTop: 8,
+          paddingLeft: 1,
+          paddingRight: 1,
+          flexDirection: isMobile ? "column" : "row",
+        }}
+      >
         <TextInput
           label="search by fuel station name, id or location"
           handleChange={handleChange}
           value={searchKeyword}
         />
+        <FuelTypeTabs handleFuelSelection={handleFuelSelection} />
       </Box>
     </GoogleMap>
   ) : (
