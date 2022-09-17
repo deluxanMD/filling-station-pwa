@@ -4,6 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import FuelTypeSelect from "./fuel-type-select/fuel-type-select.component";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import FuelAvailableChart from "../charts/fuel-available/fuel-available.component";
 
 const FillingStationDetails = () => {
   const theme = useTheme();
@@ -30,6 +31,12 @@ const FillingStationDetails = () => {
         <CloseIcon style={{ position: "absolute", top: 10, right: 10 }} />
         <Divider />
         <FuelTypeSelect />
+        <Box sx={{ marginTop: "-100px", marginBottom: "-100px" }}>
+          <FuelAvailableChart />
+        </Box>
+        <Typography variant="h5">
+          11550L <span>Remain</span>
+        </Typography>
       </Paper>
     </Box>
   );
