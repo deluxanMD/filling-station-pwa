@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import FuelTypeTabs from "../../components/fuel-type-tabs/fuel-type-tabs.component";
+import FillingStationDetails from "../../components/filling-station-details/filling-station-details.component";
 
 const containerStyle = {
   width: "100%",
@@ -20,6 +21,7 @@ const Maps = () => {
   const [map, setMap] = useState(null);
   const [center, setCenter] = useState({});
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [selectedFuel, setSelectedFuel] = useState(null);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -58,7 +60,7 @@ const Maps = () => {
   };
 
   const handleFuelSelection = (type) => {
-    console.log(`Selected fuel type is ${type}`);
+    setSelectedFuel(type);
   };
 
   useEffect(() => {
@@ -91,6 +93,7 @@ const Maps = () => {
         />
         <FuelTypeTabs handleFuelSelection={handleFuelSelection} />
       </Box>
+      <FillingStationDetails />
     </GoogleMap>
   ) : (
     <></>
