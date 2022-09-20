@@ -9,7 +9,6 @@ import FillingStationDetails from "../../components/filling-station-details/fill
 
 const containerStyle = {
   width: "100%",
-  height: "100vh",
 };
 
 const Maps = () => {

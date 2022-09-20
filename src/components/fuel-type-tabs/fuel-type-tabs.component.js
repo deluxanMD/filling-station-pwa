@@ -13,7 +13,7 @@ const FuelTypeTabs = ({ handleFuelSelection }) => {
     <Stack
       direction="row"
       spaciing={1}
-      style={{ width: "100%", overflow: "auto", marginTop: isMobile ? 8 : 0 }}
+      style={{ width: "100%", marginTop: isMobile ? 8 : 0 }}
     >
       <IconChips
         Icon={LocalGasStationIcon}

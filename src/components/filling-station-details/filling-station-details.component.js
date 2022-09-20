@@ -30,7 +30,6 @@ const FillingStationDetails = () => {
           zIndex: 9999,
           position: "relative",
           padding: 10,
-          overflow: "auto",
         }}
       >
         <Typography style={{ marginBottom: 10 }}>
